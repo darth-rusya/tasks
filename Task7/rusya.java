@@ -16,7 +16,7 @@ public class rusya{
 			head_number += 2;
 			present += 1;
 		}
-		System.out.println(result);
+		System.out.println("Результат " + result);
 	}
 
 }
