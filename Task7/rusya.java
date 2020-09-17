@@ -13,8 +13,8 @@ public class rusya{
 			if (present%2==0){
 				result=result-1/Math.pow(head_number,2);
 			}
-			head_number = head_number + 2;
-			present = present + 1;
+			head_number += 2;
+			present += 1;
 		}
 		System.out.println(result);
 	}
