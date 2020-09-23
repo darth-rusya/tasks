@@ -10,7 +10,11 @@ public class Task3 {
 			    	result *= Number/(Number-1);
 				}
 				System.out.println(result*2);
+			} else {
+				System.out.println("Error");
 			}
-		}	
+		} else {
+			System.out.println("List index out of range");
+		}
 	}
 }
