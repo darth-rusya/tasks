@@ -10,27 +10,16 @@ public class Test710 {
             String command = sc.nextLine();
             switch (command) {
                 case "add":
-                    if (counter < notes.length) {
-                        add(counter, notes, sc);
-                        counter++;   
-                    } else {
-                        System.out.println("Array is filled");
-                    }
+                    add(counter, notes, sc);
                     break;
                 case "remove":
-                    if (counter >= 1) {
-                        counter--;
-                        remove(counter, notes);
-                    } else {
-                        System.out.println("There is nothing to remove");
-                    }
+                    remove(counter, notes);
                     break;
                 case "exit":
                     System.exit(0);
                     break;
                 case "printAll":
-                    printAll(counter, notes);
-                    System.out.println();
+                    printAll(notes);
                     break;
                 case "print":
                     print(sc, notes);
@@ -44,32 +33,61 @@ public class Test710 {
         }
     }
 
-    public static void add(int counter, String[] notes, Scanner sc){
-        notes[counter] = sc.nextLine();
-    }
-
-    public static void remove(int counter, String[] notes){
-        notes[counter] = null;
-    }
-    public static void printAll(int counter, String[] notes){
-        for (int i = 0; i < counter; i++){
-            System.out.print(notes[i] + " ");
+    public static void add(int counter, String[] notes, Scanner sc) {
+        boolean flag = true;
+        counter = notes.length;
+        for (int i = 0; i < counter && flag; i++) {
+            notes[i] = sc.nextLine();
+            if (notes[i].equals("")) {
+                flag = false;
+                notes[i] = null;
+            }
         }
     }
+
+    public static void remove(int counter, String[] notes) {
+        boolean flag = true;
+        counter = notes.length;
+        for (int i = counter-1; i >= 0 && flag; i--) {
+            if (notes[i] == null) {
+                continue;
+            } else {
+                notes[i] = null;
+                flag = false;
+            }
+        }
+    }
+    
+    public static void printAll(String[] notes) {
+        boolean flag = true;
+        for (int i = 0; (i < notes.length) && flag; i++) {
+            if (notes[i] == null) {
+                flag = false;
+                break;
+            }
+            System.out.print(notes[i] + " ");
+        }
+        System.out.println();
+    }
+    
     public static void print(Scanner sc, String[] notes) {
         String line = sc.nextLine();
         for ( int j = 0; j < notes.length; j++ ) {
             if (line.equals(notes[j])){
-                System.out.println(j);
-            } else {
-                System.out.println("Line is not found");
+                System.out.print(j + " ");
             }
         }
+        System.out.println();
     }
+    
     public static void printLongest(String[] notes, int counter) {
         int max = -1;
         String word = "";
+        counter = notes.length;
         for (int i = 0; i < counter; i++) {
+            if (notes[i] == null) {
+                break;
+            }
             if (notes[i].length() > max) {
                 max = notes[i].length();
                 word = notes[i];
